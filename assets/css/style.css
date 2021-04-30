@@ -1,0 +1,18 @@
+body{
+  background-color: aqua;
+}
+
+.container{
+  text-align: center;
+  width: 400px;
+  margin: auto;
+  background-color: white;
+  color: black;
+}
+.container ul{
+  display: inline-block;
+  margin: 10px 30px;
+}
+li{
+  list-style: none;
+}
