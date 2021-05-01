@@ -61,14 +61,7 @@ const pink = '#ff00e6';
 const blue = '#0084ff';
 const arrCatsRibbons = arrCats.map((cat) => {
   let color;
-  let catRibbon =[
-    ...cat,
-    ribbon={
-      colorRib : "",
-      opacityRib : 0
-    }
-    
-  ];
+  
   if(cat.sesso === 'femmina'){
     color = pink;
   }else{
@@ -84,15 +77,42 @@ const arrCatsRibbons = arrCats.map((cat) => {
     }
   }
 })
-console.log(arrCatsRibbons);
+//console.log(arrCatsRibbons);
+
+
+// filtro maschi e femmine
+const catsFem = arrCatsRibbons.filter((cat) =>cat.sesso === "femmina");
+const catsMas = arrCatsRibbons.filter((cat) =>cat.sesso === "maschio");
+console.log(catsFem, catsMas)
+
+
+
+catsFem.forEach((cat) => {
+  $('#due-fem ul').append(stampaVideo(cat.color, cat.nome, cat.ribbon.color, cat.ribbon.opacity));
+})
+catsMas.forEach((cat) => {
+  $('#due-mas ul').append(stampaVideo(cat.color, cat.nome, cat.ribbon.color, cat.ribbon.opacity));
+})
+
+
 
               // FUNZIONI
 
 
-function stampaVideo(color, name){
+function stampaVideo(color, name, ...ribbon){
+  
+  let ribbonTag="";
+  if(ribbon.lenght>0){
+    ribbonTag = `
+    <i class="fas fa-ribbon" style="color:${ribbon[0]};
+                                  opacity:${ribbon[1]}"></i>
+    `
+  }
+  
   let html =`
     <li>
       <i class="fas fa-cat" style="color:${color}"></i>
+      ${ribbonTag}
       <span>${name}</span>
     </li>
   `
